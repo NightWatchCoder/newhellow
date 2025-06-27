@@ -68,13 +68,6 @@ jobs:
         run: |
           ls -al  # Output what JAR file was downloaded.
 
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-          cache: maven
-
       - name: Run the Java application.
         run: |
           java -jar target/newhellow-0.1.0.jar "blah"
