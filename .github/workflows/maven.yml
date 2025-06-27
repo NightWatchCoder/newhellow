@@ -33,7 +33,7 @@ jobs:
 
 
   build:
-
+    needs: [outputPipelineVariables]
     runs-on: ubuntu-latest
 
     steps:
