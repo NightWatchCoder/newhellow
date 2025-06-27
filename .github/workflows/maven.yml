@@ -48,6 +48,11 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
+  run:
+    needs: [build]
+    runs-on: ubuntu-latest
+
+    steps:
     - name: Run the Java application.
       run: |
         java -jar target/newhellow-0.1.0.jar "blah"
