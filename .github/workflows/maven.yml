@@ -142,7 +142,7 @@ jobs:
     needs: [runPart1]
     runs-on: ubuntu-latest
     strategy:
-      matrix: ${{fromJson(needs.generate-jsons.outputs.matrix)}}
+      matrix: ${{fromJson(needs.runPart1.outputs.matrix)}}
     steps:
 
       - name: Checkout repository
