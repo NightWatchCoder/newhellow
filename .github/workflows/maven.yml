@@ -127,7 +127,7 @@ jobs:
         id: set-matrix
         run: |
           ls target/jsons/*.json
-          files=$(ls target/jsons/*.json | xargs -n1 basename | jq -R . | jq -s .)
+          files=$(ls target/jsons/*.json | xargs -n1 basename | jq -R . | jq -s -c .)
           echo "Files array:"
           echo "$files"
           echo "matrix={\"json\":$files}" >> $GITHUB_OUTPUT
