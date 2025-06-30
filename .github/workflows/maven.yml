@@ -63,6 +63,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: newhellow-built-jar
+          path: target
 
       - name: Output what JAR file was downloaded
         run: |
