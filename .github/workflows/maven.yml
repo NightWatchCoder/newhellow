@@ -43,8 +43,6 @@ jobs:
 
     runs-on: ubuntu-latest
     environment: test1
-    outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
 
     steps:
       - name: Output the first parameter supplied by the user
@@ -65,6 +63,9 @@ jobs:
   build:
     needs: [outputPipelineVariables]
     runs-on: ubuntu-latest
+    environment: test1
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
 
     steps:
     - uses: actions/checkout@v4
@@ -117,7 +118,7 @@ jobs:
         run: |
           echo "Working directory: $(pwd)"
           ls -al target
-          java -jar target/newhellow-0.1.0.jar "blah"
+          java -jar target/newhellow-0.1.0.jar "1"
           mkdir jsons
           mv *.json jsons/
 
