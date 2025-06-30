@@ -139,7 +139,7 @@ jobs:
           path: target/jsons/
 
   runPart2:
-    needs: runPart1
+    needs: [runPart1]
     runs-on: ubuntu-latest
     strategy:
       matrix: ${{fromJson(needs.generate-jsons.outputs.matrix)}}
