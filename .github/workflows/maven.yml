@@ -23,6 +23,19 @@ on:
         description: "Enter the second parameter"
         default: "secondParameter"
         type: "string"
+      mode:
+        description: "Choose mode"
+        required: true
+        type: choice
+        options:
+          - simple
+          - advanced
+      optional_param:
+        description: "Optional (used only for advanced)"
+        default: "defaultVal"
+        required: false
+        type: string
+
 
 jobs:
 
