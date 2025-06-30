@@ -128,6 +128,8 @@ jobs:
         run: |
           ls target/jsons/*.json
           files=$(ls target/jsons/*.json | xargs -n1 basename | jq -R . | jq -s .)
+          echo "Files array:"
+          echo "$files"
           echo "matrix={\"json\":$files}" >> $GITHUB_OUTPUT
 
       - name: Upload JSON files
