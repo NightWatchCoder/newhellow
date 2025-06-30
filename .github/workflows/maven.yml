@@ -120,6 +120,9 @@ jobs:
           ls -al target
           java -jar target/newhellow-0.1.0.jar "1"
 
+      - name: List all files and folders
+        run: find . -type fs
+
       - name: Create Matrix from JSON files
         id: set-matrix
         run: |
