@@ -13,11 +13,13 @@ public class JsonWriter {
     }
 
     public void generateAndWriteJson(String outputFilePath, String jsonIterationValue) {
+
+        RandomStringGenerator randomStringGenerator = new RandomStringGenerator();
+        String randomString = randomStringGenerator.generateRandomString(3);
+
         // Sample data to write as JSON
         Map<String, Object> data = new HashMap<>();
-        data.put("name", "Alice");
-        data.put("age", 30);
-        data.put("active", true);
+        data.put("randomString", randomString);
         data.put("jsonIterationValue", jsonIterationValue);
 
         // Create ObjectMapper instance
