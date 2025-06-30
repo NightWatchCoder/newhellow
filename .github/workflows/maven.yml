@@ -80,8 +80,13 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
+      - name: List all files and folders
+        run: find . -type f
+
       - name: Run the Java application.
         run: |
+          echo "Working directory: $(pwd)"
+          ls -al target
           java -jar target/newhellow-0.1.0.jar "blah"
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
