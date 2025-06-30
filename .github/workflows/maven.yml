@@ -68,6 +68,7 @@ jobs:
       - name: Output what JAR file was downloaded
         run: |
           ls -al  # Output what JAR file was downloaded.
+          ls -al target # Output what JAR file was downloaded in the target folder.
 
       - name: Checkout repository
         uses: actions/checkout@v4
