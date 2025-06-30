@@ -1,4 +1,7 @@
 package newhellow;
+
+import java.util.Arrays;
+
 public class HelloWorld {
     public static void main(String[] args) {
 
@@ -9,6 +12,20 @@ public class HelloWorld {
 
             if(parameter1.equals("1")){
                 System.out.println("Executing part 1!");
+
+                if(args.length > 0) {
+
+                    String[] newArray = Arrays.copyOfRange(args, 1, args.length);
+
+                    for(int i = 1; i <= newArray.length; i++) {
+                        newhellow.JsonWriter jsonWriter;
+                        jsonWriter = new newhellow.JsonWriter();
+                        jsonWriter.generateAndWriteJson("target/jsons/output" + i + ".json", String.valueOf(i));
+                    }
+
+
+                }
+
             } else if (parameter1.equals("2")) {
                 System.out.println("Executing part 2!");
             } else if (parameter1.equals("3")) {
