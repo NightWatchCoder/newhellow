@@ -118,7 +118,7 @@ jobs:
         run: |
           echo "Working directory: $(pwd)"
           ls -al target
-          java -jar target/newhellow-0.1.0.jar "1"
+          java -jar target/newhellow-0.1.0.jar "1" "abc" "def" "ghi"
 
       - name: List all files and folders again
         run: find . -type f

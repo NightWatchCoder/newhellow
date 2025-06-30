@@ -9,16 +9,16 @@ import java.util.Map;
 public class JsonWriter {
 
     public JsonWriter() {
-        int i = 0;
     }
 
-    public void generateAndWriteJson(String outputFilePath, String jsonIterationValue) {
+    public void generateAndWriteJson(String outputFilePath, String jsonIterationValue, String arrayValue) {
 
         RandomStringGenerator randomStringGenerator = new RandomStringGenerator();
         String randomString = randomStringGenerator.generateRandomString(3);
 
         // Sample data to write as JSON
         Map<String, Object> data = new HashMap<>();
+        data.put("arrayValue", arrayValue);
         data.put("randomString", randomString);
         data.put("jsonIterationValue", jsonIterationValue);
 
