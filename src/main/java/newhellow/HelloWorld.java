@@ -3,7 +3,11 @@ package newhellow;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -78,6 +82,39 @@ public class HelloWorld {
                     break;
                 case "3":
                     System.out.println("Executing part 3!");
+
+                    Path baseDir = Paths.get("target/all-jsons2");
+
+                    List<Path> jsonFiles = new ArrayList<>();
+
+                    try {
+                        // Recursively find files matching pattern: jsons2-output2*/output2-*.json
+                        jsonFiles = Files.walk(baseDir)
+                                .filter(Files::isRegularFile)
+                                .filter(path -> path.getFileName().toString().startsWith("output2-"))
+                                .filter(path -> path.toString().contains("jsons2-output2"))
+                                .filter(path -> path.toString().endsWith(".json"))
+                                .collect(Collectors.toList());
+
+                        System.out.println("Found " + jsonFiles.size() + " JSON file(s).");
+
+                        ObjectMapper mapper = new ObjectMapper();
+
+                        for (Path jsonFile : jsonFiles) {
+                            System.out.println("Reading file: " + jsonFile);
+                            try {
+                                JsonNode rootNode = mapper.readTree(jsonFile.toFile());
+                                // Process JSON as needed
+                                System.out.println("Parsed content: " + rootNode.toPrettyString());
+                            } catch (IOException e) {
+                                System.err.println("Error parsing file: " + jsonFile + " - " + e.getMessage());
+                            }
+                        }
+
+                    } catch (IOException e) {
+                        System.err.println("Error walking directory: " + e.getMessage());
+                    }
+
                     break;
                 default:
                     System.out.println("Invalid parameter supplied for the first parameter. " +
