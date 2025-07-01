@@ -223,11 +223,11 @@ jobs:
           name: jsons
           path: target/jsons
 
-      - name: Download JSONs
-        uses: actions/download-artifact@v4
-        with:
-          name: jsons2
-          path: target/jsons2
+#      - name: Download JSONs
+#        uses: actions/download-artifact@v4
+#        with:
+#          name: jsons2
+#          path: target/jsons2
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
