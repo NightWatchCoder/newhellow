@@ -197,3 +197,53 @@ jobs:
         with:
           name: jsons2-${{ matrix.json }}
           path: target/jsons2/
+
+  runPart3:
+    needs: [runPart2]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download JAR artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: newhellow-built-jar
+          path: target
+
+      - name: Output what JAR file was downloaded
+        run: |
+          ls -al  # Output what JAR file was downloaded.
+          ls -al target # Output what JAR file was downloaded in the target folder.
+
+      - name: Download JSONs
+        uses: actions/download-artifact@v4
+        with:
+          name: jsons
+          path: target/jsons
+
+      - name: Download JSONs
+        uses: actions/download-artifact@v4
+        with:
+          name: jsons2
+          path: target/jsons2
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: List all files and folders
+        run: find . -type f
+
+      - name: Run the Java application.
+        run: |
+          echo "Working directory: $(pwd)"
+          ls -al target
+          java -jar target/newhellow-0.1.0.jar "3"
+
+      - name: List all files and folders again
+        run: find . -type f
