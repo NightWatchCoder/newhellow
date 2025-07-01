@@ -1,6 +1,14 @@
 package newhellow;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Arrays;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class HelloWorld {
     public static void main(String[] args) {
@@ -21,7 +29,8 @@ public class HelloWorld {
                         for (int i = 1; i <= newArray.length; i++) {
                             JsonWriter jsonWriter;
                             jsonWriter = new JsonWriter();
-                            jsonWriter.generateAndWriteJson("target/jsons/output" + i + ".json", String.valueOf(i), newArray[i - 1]);
+                            jsonWriter.generateAndWriteJson("target/jsons/output" + i + ".json",
+                                    String.valueOf(i), newArray[i - 1], false, null);
                         }
                     }
 
@@ -32,6 +41,38 @@ public class HelloWorld {
                     if (args.length > 1) {
                         String[] newArray = Arrays.copyOfRange(args, 1, args.length);
 
+                        String content;
+                        try{
+                            content = Files.readString(Path.of(newArray[0]));
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+
+                        // Parse the JSON
+                        ObjectMapper objectMapper = new ObjectMapper();
+                        JsonNode root;
+                        try{
+                            root = objectMapper.readTree(content);
+                        } catch (JsonMappingException e) {
+                            throw new RuntimeException(e);
+                        } catch (JsonProcessingException e) {
+                            throw new RuntimeException(e);
+                        }
+
+                        // Extract values
+                        String jsonIterationValue = root.path("jsonIterationValue").asText();
+                        String randomString = root.path("randomString").asText();
+                        String arrayValue = root.path("arrayValue").asText();
+
+                        // Output the variables
+                        System.out.println("jsonIterationValue: " + jsonIterationValue);
+                        System.out.println("randomString: " + randomString);
+                        System.out.println("arrayValue: " + arrayValue);
+
+                        JsonWriter jsonWriter;
+                        jsonWriter = new JsonWriter();
+                        jsonWriter.generateAndWriteJson("target/jsons2/output2-" + jsonIterationValue + ".json",
+                                jsonIterationValue, arrayValue, true, randomString);
                     }
 
                     break;

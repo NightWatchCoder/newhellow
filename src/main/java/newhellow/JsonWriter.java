@@ -11,13 +11,20 @@ public class JsonWriter {
     public JsonWriter() {
     }
 
-    public void generateAndWriteJson(String outputFilePath, String jsonIterationValue, String arrayValue) {
+    public void generateAndWriteJson(String outputFilePath, String jsonIterationValue, String arrayValue, boolean secondPart, String randomString) {
 
         RandomStringGenerator randomStringGenerator = new RandomStringGenerator();
-        String randomString = randomStringGenerator.generateRandomString(3);
+        if(randomString == null || randomString.isEmpty()) {
+            randomString = randomStringGenerator.generateRandomString(3);
+        }
 
         // Sample data to write as JSON
         Map<String, Object> data = new HashMap<>();
+        if(secondPart) {
+            data.put("secondPart", "true");
+        } else {
+            data.put("secondPart", "false");
+        }
         data.put("arrayValue", arrayValue);
         data.put("randomString", randomString);
         data.put("jsonIterationValue", jsonIterationValue);

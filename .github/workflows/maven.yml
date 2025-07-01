@@ -187,7 +187,13 @@ jobs:
         run: |
           echo "Working directory: $(pwd)"
           ls -al target
-          java -jar target/newhellow-0.1.0.jar "2"
+          java -jar target/newhellow-0.1.0.jar "2" "/target/jsons/${{ matrix.json }}"
 
       - name: List all files and folders again
         run: find . -type f
+
+      - name: Upload JSON files
+        uses: actions/upload-artifact@v4
+        with:
+          name: jsons2
+          path: target/jsons2/
