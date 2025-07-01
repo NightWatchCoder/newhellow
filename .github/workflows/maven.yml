@@ -195,5 +195,5 @@ jobs:
       - name: Upload JSON files
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix }}
+          name: jsons2-${{ matrix.json }}
           path: target/jsons2/
