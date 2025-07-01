@@ -92,7 +92,7 @@ public class HelloWorld {
                         jsonFiles = Files.walk(baseDir)
                                 .filter(Files::isRegularFile)
                                 .filter(path -> path.getFileName().toString().startsWith("output2-"))
-                                .filter(path -> path.toString().contains("jsons2-output2"))
+                                .filter(path -> path.toString().contains("jsons2-output"))
                                 .filter(path -> path.toString().endsWith(".json"))
                                 .collect(Collectors.toList());
 
