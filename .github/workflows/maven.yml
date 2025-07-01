@@ -145,6 +145,10 @@ jobs:
       matrix: ${{fromJson(needs.runPart1.outputs.matrix)}}
     steps:
 
+      - name: Print matrix item
+        run: |
+          echo "Processing file: ${{ matrix.json }}"
+
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -175,8 +179,15 @@ jobs:
       - name: List all files and folders
         run: find . -type f
 
+      - name: Print matrix item
+        run: |
+          echo "Processing file: ${{ matrix.json }}"
+
       - name: Run the Java application.
         run: |
           echo "Working directory: $(pwd)"
           ls -al target
           java -jar target/newhellow-0.1.0.jar "2"
+
+      - name: List all files and folders again
+        run: find . -type f

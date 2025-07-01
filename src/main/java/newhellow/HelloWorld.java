@@ -10,29 +10,38 @@ public class HelloWorld {
             // Get the first parameter supplied to this application.
             String parameter1 = args[0];
 
-            if(parameter1.equals("1")){
-                System.out.println("Executing part 1!");
+            switch (parameter1) {
+                case "1":
+                    System.out.println("Executing part 1!");
 
-                if(args.length > 1) {
+                    if (args.length > 1) {
 
-                    String[] newArray = Arrays.copyOfRange(args, 1, args.length);
+                        String[] newArray = Arrays.copyOfRange(args, 1, args.length);
 
-                    for(int i = 1; i <= newArray.length; i++) {
-                        newhellow.JsonWriter jsonWriter;
-                        jsonWriter = new newhellow.JsonWriter();
-                        jsonWriter.generateAndWriteJson("target/jsons/output" + i + ".json", String.valueOf(i), newArray[i-1]);
+                        for (int i = 1; i <= newArray.length; i++) {
+                            JsonWriter jsonWriter;
+                            jsonWriter = new JsonWriter();
+                            jsonWriter.generateAndWriteJson("target/jsons/output" + i + ".json", String.valueOf(i), newArray[i - 1]);
+                        }
                     }
 
+                    break;
+                case "2":
+                    System.out.println("Executing part 2!");
 
-                }
+                    if (args.length > 1) {
+                        String[] newArray = Arrays.copyOfRange(args, 1, args.length);
 
-            } else if (parameter1.equals("2")) {
-                System.out.println("Executing part 2!");
-            } else if (parameter1.equals("3")) {
-                System.out.println("Executing part 3!");
-            } else {
-                System.out.println("Invalid parameter supplied for the first parameter. " +
-                        "Expected either 1, 2, or 3. But received " + parameter1 + ".");
+                    }
+
+                    break;
+                case "3":
+                    System.out.println("Executing part 3!");
+                    break;
+                default:
+                    System.out.println("Invalid parameter supplied for the first parameter. " +
+                            "Expected either 1, 2, or 3. But received " + parameter1 + ".");
+                    break;
             }
 
 
