@@ -18,6 +18,11 @@ public class HelloWorld {
 
         if(args.length > 0) {
 
+            // Output the values supplied in the args array.
+            for(int i = 0; i < args.length; i++) {
+                System.out.println("args index " + i + " value is: " + args[i]);
+            }
+
             // Get the first parameter supplied to this application.
             String parameter1 = args[0];
 
